@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AprsEntryType from '../../types/AprsEntry';
+import AprsEntryType from '../../types/AprsEntryType';
 import FileUploader from '../FileUploader.vue';
 import truck from '/truck.svg';
 

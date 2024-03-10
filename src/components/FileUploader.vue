@@ -14,7 +14,10 @@ import AprsEntryType from '../types/AprsEntry';
       const file = fileInput.files[0];
       if(JSONFileParser.isJsonFile(file)) {
         fileInformation.value = file;
-        jsonContentModel.value = await JSONFileParser.parse(file);
+        const temp = await JSONFileParser.parse(file);
+        if (typeof temp === typeof []){
+          jsonContentModel.value = [...temp]
+        }
       }
     }
   }
@@ -60,4 +63,4 @@ import AprsEntryType from '../types/AprsEntry';
     cursor: pointer;
     background: var(--button-hover);
   }
-</style>
+</style>../types/AprsEntryType
