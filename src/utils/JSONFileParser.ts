@@ -1,4 +1,5 @@
-import AprsEntryType from "../types/AprsEntry";
+import AprsEntryType from "../types/AprsEntryType";
+import AprsEntryTypeRaw from "../types/AprsEntryTypeRaw";
 
 class JSONFileParser {
   
@@ -16,12 +17,12 @@ class JSONFileParser {
   static parse = async (file: File): Promise<Array<AprsEntryType>>  => {
     return new Promise<Array<AprsEntryType>>((resolve, reject) => {
       const fr = new FileReader();
-      fr.onload = (res) => {
+      fr.onload = async (res) => {
         const fileData = res.target?.result;
         if (typeof fileData !== 'string') {
           reject(new Error("Invalid JSON File"));
         } else {
-          const input = JSON.parse(fileData);
+          const input = this.format(JSON.parse(fileData));
           resolve(input);
         }
       };
@@ -29,6 +30,19 @@ class JSONFileParser {
       fr.readAsText(file);
     });
   }
+  static format = (data: Array<AprsEntryTypeRaw>): Array<AprsEntryType> => (
+    data.map((item: AprsEntryTypeRaw) => {
+      const newItem = {} as AprsEntryType;
+      newItem.time = parseInt(item.time);
+      newItem.lasttime = parseInt(item.lasttime);
+      newItem.course = parseInt(item.course);
+      newItem.lat = parseFloat(item.lat);
+      newItem.lng = parseFloat(item.lng);
+      newItem.altitude = parseFloat(item.altitude);
+      newItem.speed = parseInt(item.speed);
+      return newItem;
+    })
+  )
   
 }
 
