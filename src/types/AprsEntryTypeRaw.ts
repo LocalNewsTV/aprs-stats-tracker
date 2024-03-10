@@ -1,4 +1,4 @@
-type AprsEntryType = {
+type AprsEntryTypeRaw = {
   time: string,
   lasttime: string,
   lat: string,
@@ -9,4 +9,4 @@ type AprsEntryType = {
   comment: string
 }
 
-export default AprsEntryType;
+export default AprsEntryTypeRaw;
