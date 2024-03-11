@@ -11,7 +11,7 @@
     const averageDaily = (furthestDay.value - earliestDay.value) / (24 * 60 * 60 * 1000);
     if (totalPackets.value / averageDaily < 5) { return "Is this thing on?" }
     if (totalPackets.value / averageDaily < 10) { return "You're a fair weather driver, rain cramps your style" }
-    if (totalPackets.value / averageDaily < 25) { return "You're getting out there!" }
+    if (totalPackets.value / averageDaily < 25) { return "We hear you calling!" }
     return "You're a chatty one, we like that"
   })
   const earliestDay = computed(() => Math.min(...jsonContentModel.value.map((item: AprsEntryType) => item.time)) * 1000);
@@ -38,20 +38,24 @@
         let's stroll down the memory lane of your journey.
       </p>
       <div class="bump-out">
-        <p>
-          <img :src=speedometer />
-          You were caught travelling at
-          <span class="accent accent-c">{{ fastestSpeed }}/km!&nbsp;</span>
-        </p>
-        <p class="flavour-text italic">{{ speedMessage }}</p>
         <div class="small-flex">
-        <img :src="chatheart" />
-        <p>
-          You sent
-          <span class="accent">{{ totalPackets }}</span>
-          packets!
-          <span class="italic">{{ packetMessage }}</span>
-        </p>
+          <img :src=speedometer />
+          <div>
+            <p>
+              You were caught travelling at
+              <span class="accent accent-c">{{ fastestSpeed }}/km!&nbsp;</span>
+            </p>
+            <p class="flavour-text italic">{{ speedMessage }}</p>
+          </div>
+        </div>
+        <div class="small-flex">
+        <img :src="chatheart" />&nbsp;
+          <p>
+            You sent
+            <span class="accent">{{ totalPackets }}</span>
+            packets!
+            <span class="italic">{{ packetMessage }}</span>
+          </p>
       </div>
       </div>
     </div>
@@ -62,11 +66,13 @@
   .small-flex {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     flex-direction: row;
   }
   img {
     height: 48pt;
     width: 48pt;
+    margin-right: 1em;
   }
   .title { color: white; }
   .big { font-size: 48pt;}
