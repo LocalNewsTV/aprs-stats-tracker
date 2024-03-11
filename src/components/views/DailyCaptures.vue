@@ -6,24 +6,72 @@
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
   const dates = DataFormatter.daysInWeek;
   const dataByDay = computed(() => DataFormatter.DayConversion(jsonContentModel.value))
-  
   const busiestDay = computed(() => dates[dataByDay.value.indexOf(Math.max(...dataByDay.value))])
+  const spreadByHours = computed(() => DataFormatter.HourConversion(jsonContentModel.value))
+  const morningNoonNight = computed(() => DataFormatter.morningNoonOrNight(spreadByHours.value) )
 </script>
 <!-- // -->
 <template>
 <div id="captures-cont" class="full-container">
-  <p class="active">Your most active day was
-    <span class="accent">{{ busiestDay }}</span>
-  </p>
-  <BarChart :data="dataByDay" :categories="dates" id="chart" />
+  <div class="content-container">
+    <p class="active">Your most active day was
+      <span class="accent">{{ busiestDay }}</span>
+    </p>
+    <div class="flex-row">
+      <BarChart
+        :data="dataByDay"
+        :categories="dates"
+        id="dayChart"
+      />
+      <div class="flex-col">
+        <p class="">
+          You often travel in the
+          <span class="accent-small">{{morningNoonNight}}</span>
+        </p>
+        <p>Text B</p>
+      </div>
+    </div>
+    <BarChart
+      :data="spreadByHours"
+      :categories="DataFormatter.timeConversion"
+      id="hourChart"
+      :horizontal="false"
+      :dataLabels="false"
+      :width="750"
+    />
+  </div>
 </div>
 </template>
 <!-- // -->
 <style scoped>
   #captures-cont { background-color: #5CE6C3; }
-  .active { font-size: 32pt;}
+  .content-container {
+    width: 100%;
+    max-width: var(--medium-screen);
+  }
+  .active { 
+    font-size: 32pt;
+    margin-bottom: 1.5em;
+    margin-top: 1em;
+  }
   .accent {
     color: #064737;
     font-size: 48pt;
+  }
+  .accent-small {
+    color: green;
+    font-size: 20pt;
+  }
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+  }
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
   }
 </style>

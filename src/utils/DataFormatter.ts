@@ -16,7 +16,24 @@ class DataFormatter {
     })
     return entries;
   }
-
+  static morningNoonOrNight = (dataSet: Array<number>) => {
+    const timesOfDay = {
+      morning: 0,
+      noon: 0,
+      night: 0, 
+    }
+    dataSet.forEach((item: number, index: number) => {
+      if (index >= 11 && index <= 16) {
+        timesOfDay.noon += item;
+      } else if (index > 16 || index <= 4) {
+        timesOfDay.night += item;
+      } else { timesOfDay.morning += item; }
+    })
+    const { morning, noon, night } = timesOfDay;
+    if(morning > noon && morning > night) { return "Morning"; }
+    if(noon > morning && noon > night) { return "Afternoon"; }
+    return "Night";
+  }
   static HourConversion(dataset: Array<AprsEntryType>) {
     const entries: Array<number> = Array(24).fill(0);
     dataset.forEach((item: AprsEntryType) => {
