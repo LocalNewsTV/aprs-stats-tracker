@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, PropType, watch } from 'vue';
+  import { ref, PropType } from 'vue';
   const { categories, data } = defineProps({
     categories: {
       required: true,

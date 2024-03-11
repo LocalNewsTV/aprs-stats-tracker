@@ -1,6 +1,9 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import AprsEntryType from '../../types/AprsEntryType';
+  import rocket from '/rocket.svg';
+  import chatheart from '/chat-heart.svg';
+  import speedometer from '/speedometer.svg';
 
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
   const totalPackets = computed(() => jsonContentModel.value.length)
@@ -26,43 +29,62 @@
 <template>
   <div id="captures-in-period" class="full-container">
     <div class="content-container">
-      <p class="big title">Your Journey in Review</p>
+      <p class="big title">Your Journey in Review <img :src="rocket" /></p>
       <p>
-        "From the kickoff at
+        From the kickoff at
         <span class="accent accent-a">{{ new Date(earliestDay).toDateString() }}</span>
         to the triumphant closing act at
         <span class="accent accent-b">{{ new Date(furthestDay).toDateString() }}</span>,
         let's stroll down the memory lane of your journey.
       </p>
       <div class="bump-out">
-        <p>You were caught travelling at <span class="accent accent-c">{{ fastestSpeed }}/km!</span></p>
-        <p class="flavour-text">{{ speedMessage }}</p>
-      </div>
-      <div>
         <p>
-          In this period, you sent out
+          <img :src=speedometer />
+          You were caught travelling at
+          <span class="accent accent-c">{{ fastestSpeed }}/km!&nbsp;</span>
+        </p>
+        <p class="flavour-text italic">{{ speedMessage }}</p>
+        <div class="small-flex">
+        <img :src="chatheart" />
+        <p>
+          You sent
           <span class="accent">{{ totalPackets }}</span>
           packets!
-          {{ packetMessage }}
+          <span class="italic">{{ packetMessage }}</span>
         </p>
+      </div>
       </div>
     </div>
   </div>
 </template>
 <!-- // -->
 <style scoped>
+  .small-flex {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  img {
+    height: 48pt;
+    width: 48pt;
+  }
   .title { color: white; }
   .big { font-size: 48pt;}
-  p { font-size: 24pt; }
+  p {
+    text-align: left; 
+    font-size: 24pt;
+  }
   .content-container {
     display: flex;
     flex-direction: column;
     max-width: var(--medium-screen);
   }
+  .italic {
+    font-style: italic;
+  }
   .bump-out { padding-left: 3em;}
   .flavour-text { 
     font-size: 16pt;  
-    font-style: italic;
     padding-left: 3em;
   }
   .accent {

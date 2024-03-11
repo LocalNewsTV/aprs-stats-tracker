@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import JSONFileParser from '../utils/JSONFileParser';
-import AprsEntryType from '../types/AprsEntry';
+import AprsEntryType from '../types/AprsEntryType';
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true});
   let fileInformation = ref<File>();
 

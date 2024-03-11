@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { computed, ref, watch } from 'vue';
+  import { computed, } from 'vue';
   import AprsEntryType from '../../types/AprsEntryType';
   import DataFormatter from '../../utils/DataFormatter';
   import BarChart from '../BarChart.vue';
@@ -26,4 +26,4 @@
     color: #064737;
     font-size: 48pt;
   }
-</style>../../types/AprsEntryType
+</style>
