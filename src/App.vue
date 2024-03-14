@@ -4,7 +4,7 @@
   import AprsEntryType from './types/AprsEntryType';
   import DailyCaptures from './components/views/DailyCaptures.vue';
   import CapturesInPeriod from './components/views/CapturesInPeriod.vue';
-import Map from './components/Map.vue';
+  import Mapping from './components/views/Mapping.vue';
 
   const jsonContentModel = ref<Array<AprsEntryType>>([]);
 
@@ -14,7 +14,7 @@ import Map from './components/Map.vue';
   <Hero v-model="jsonContentModel" />
   <CapturesInPeriod v-if="jsonContentModel.length > 0" v-model="jsonContentModel" />
   <DailyCaptures v-if="jsonContentModel.length > 0" v-model="jsonContentModel" />
-  <Map v-if="jsonContentModel.length > 0" v-model="jsonContentModel"></Map>
+  <Mapping v-if="jsonContentModel.length > 0" v-model="jsonContentModel" />
 </template>
 
 <style scoped>
