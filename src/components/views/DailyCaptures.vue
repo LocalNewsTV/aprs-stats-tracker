@@ -3,6 +3,8 @@
   import AprsEntryType from '../../types/AprsEntryType';
   import DataFormatter from '../../utils/DataFormatter';
   import BarChart from '../BarChart.vue';
+  import chart from '/graph-up.svg';
+
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
   const dates = DataFormatter.daysInWeek;
   const dataByDay = computed(() => DataFormatter.DayConversion(jsonContentModel.value))
@@ -13,6 +15,7 @@
 <!-- // -->
 <template>
 <div id="captures-cont" class="full-container">
+  <img :src="chart" class="background" />
   <div class="content-container">
     <p class="active">Your most active day was
       <span class="accent">{{ busiestDay }}</span>
@@ -44,9 +47,13 @@
 </template>
 <!-- // -->
 <style scoped>
-  #captures-cont { background-color: #5CE6C3; }
+  #captures-cont { 
+    position: relative;
+    background-color: #16D0A6;
+  }
   .content-container {
     width: 100%;
+    z-index: 2;
     max-width: var(--medium-screen);
   }
   .active { 
@@ -66,7 +73,13 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-
+  }
+  .background {
+    position: absolute;
+    height: 350pt;
+    width: 350pt;
+    left: 3em;
+    bottom: 3em;
   }
   .flex-row {
     display: flex;

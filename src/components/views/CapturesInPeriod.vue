@@ -4,6 +4,7 @@
   import rocket from '/rocket.svg';
   import chatheart from '/chat-heart.svg';
   import speedometer from '/speedometer.svg';
+  import broadcastPin from '/broadcast-pin.svg';
 
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
   const totalPackets = computed(() => jsonContentModel.value.length)
@@ -28,8 +29,9 @@
 <!-- // -->
 <template>
   <div id="captures-in-period" class="full-container">
+    <img :src="broadcastPin" class="background" />
     <div class="content-container">
-      <p class="big title">Your Journey in Review <img :src="rocket" /></p>
+      <p class="big title">Your Journey in Review <img class="rocket" :src="rocket" /></p>
       <p>
         From the kickoff at
         <span class="accent accent-a">{{ new Date(earliestDay).toDateString() }}</span>
@@ -69,13 +71,16 @@
     justify-content: flex-start;
     flex-direction: row;
   }
+  /* .rocket {
+    filter: drop-shadow(1px 1px 1px #ca2b2e);
+  } */
   img {
     height: 48pt;
     width: 48pt;
     margin-right: 1em;
   }
   .title { color: white; }
-  .big { font-size: 48pt;}
+  .big { font-size: 52pt;}
   p {
     text-align: left; 
     font-size: 24pt;
@@ -84,6 +89,7 @@
     display: flex;
     flex-direction: column;
     max-width: var(--medium-screen);
+    z-index: 3;
   }
   .italic {
     font-style: italic;
@@ -97,8 +103,20 @@
     font-size: 28pt;
     font-weight: bold;
   }
-  .accent-a { color: red; }
-  .accent-b { color: yellow; }
-  .accent-c { color:  green; }
-  #captures-in-period { background-color: #D85CE6; }
+  .background {
+    position: absolute; 
+    height: 350pt;
+    width: 350pt;
+    right: 4em;
+    bottom: 4em;
+  }
+  .full-container {background-color: inherit;}
+  .accent-a { color: black; }
+  .accent-b { color: black; }
+  .accent-c { color:  black; }
+  #captures-in-period {
+    background-color: #D85CE6;
+    z-index: 1;
+    position: relative;
+  }
 </style>

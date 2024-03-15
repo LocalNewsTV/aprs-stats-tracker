@@ -7,7 +7,7 @@ const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
 </script>
 <!-- // -->
 <template>
-  <div class="full-container">
+  <div id="map-section" class="full-container">
     <h1>Oh the places you'll go</h1>
     <p>On the road less travelled here's where you stood out!</p>
     <Map v-model="jsonContentModel"></Map>
@@ -15,5 +15,8 @@ const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
 </template>
 <!-- // -->
 <style scoped>
-  
+  #map-section {
+    /* background-color: #400073 */
+    background-color: #AFB1FF;
+  }
 </style>

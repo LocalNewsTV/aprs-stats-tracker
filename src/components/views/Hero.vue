@@ -2,13 +2,14 @@
 import AprsEntryType from '../../types/AprsEntryType';
 import FileUploader from '../FileUploader.vue';
 import truck from '/truck.svg';
-
+import car from '/car.svg';
 const jsonContentModel = defineModel<Array<AprsEntryType>>({ required: true })
 
 </script>
 <!-- //  -->
 <template>
   <div id="hero-cont" class="full-container">
+    <img :src="car" class="background" />
     <div class="left">
       <h1>APRS In Review <img :src="truck" /></h1>
       <p>Upload your JSON data export from
@@ -30,6 +31,7 @@ const jsonContentModel = defineModel<Array<AprsEntryType>>({ required: true })
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    z-index: 2;
     min-height: 45svh;
   }
   p {
@@ -45,9 +47,19 @@ const jsonContentModel = defineModel<Array<AprsEntryType>>({ required: true })
   .right {
     justify-content: flex-end;
   }
+
   #hero-cont {
     background-color: #ffbf00;
     flex-direction: row;
+    position: relative;
+  }
+  .background {
+    position: absolute;
+    height: 425pt;
+    width: 425pt;
+    left: 10%;
+    bottom: 10%;
+    z-index: 1;
   }
   img {
     height: 45pt;
