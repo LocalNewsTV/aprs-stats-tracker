@@ -3,6 +3,7 @@
   import AprsEntryType from '../../types/AprsEntryType';
   import DataFormatter from '../../utils/DataFormatter';
   import BarChart from '../BarChart.vue';
+  import DonutChart from '../DonutChart.vue';
   import chart from '/graph-up.svg';
 
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
@@ -10,7 +11,13 @@
   const dataByDay = computed(() => DataFormatter.DayConversion(jsonContentModel.value))
   const busiestDay = computed(() => dates[dataByDay.value.indexOf(Math.max(...dataByDay.value))])
   const spreadByHours = computed(() => DataFormatter.HourConversion(jsonContentModel.value))
-  const morningNoonNight = computed(() => DataFormatter.morningNoonOrNight(spreadByHours.value) )
+  const timeOfDayBreakdown = computed(() => DataFormatter.morningNoonOrNight(spreadByHours.value) )
+  const morningNoonNight = computed(() => {
+    const { morning, noon, night } = timeOfDayBreakdown.value;
+    if(morning > noon && morning > night) { return "Morning"; }
+    if(noon > morning && noon > night) { return "Afternoon"; }
+    return "Night";
+  })
 </script>
 <!-- // -->
 <template>
@@ -21,27 +28,34 @@
       <span class="accent">{{ busiestDay }}</span>
     </p>
     <div class="flex-row">
-      <BarChart
-        :data="dataByDay"
-        :categories="dates"
-        id="dayChart"
-      />
       <div class="flex-col">
         <p class="">
           You often travel in the
           <span class="accent-small">{{morningNoonNight}}</span>
         </p>
-        <p>Text B</p>
+        <DonutChart
+          :data="[timeOfDayBreakdown.morning, timeOfDayBreakdown.noon, timeOfDayBreakdown.night]"
+          :categories="['Morning', 'Noon', 'Night']"
+          id="hourChart"
+        />
       </div>
+      <BarChart
+        :data="dataByDay"
+        :categories="dates"
+        id="dayChart"
+      />
     </div>
-    <BarChart
-      :data="spreadByHours"
-      :categories="DataFormatter.timeConversion"
-      id="hourChart"
-      :horizontal="false"
-      :dataLabels="false"
-      :width="750"
-    />
+    <div class="flex-row">
+      <BarChart
+        :data="spreadByHours"
+        :categories="DataFormatter.timeConversion"
+        id="hourChart"
+        :horizontal="false"
+        :dataLabels="false"
+        :width="750"
+      />
+      <p></p>
+    </div>
   </div>
 </div>
 </template>
