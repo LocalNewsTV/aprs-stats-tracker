@@ -12,9 +12,11 @@
 
 <template>
   <Hero v-model="jsonContentModel" />
-  <CapturesInPeriod v-if="jsonContentModel.length > 0" v-model="jsonContentModel" />
-  <DailyCaptures v-if="jsonContentModel.length > 0" v-model="jsonContentModel" />
-  <Mapping v-if="jsonContentModel.length > 0" v-model="jsonContentModel" />
+  <div v-if="jsonContentModel.length > 0" >
+    <CapturesInPeriod v-model="jsonContentModel" />
+    <DailyCaptures v-model="jsonContentModel" />
+    <Mapping v-model="jsonContentModel" />
+  </div>
 </template>
 
 <style scoped>
