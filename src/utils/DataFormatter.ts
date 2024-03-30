@@ -29,10 +29,7 @@ class DataFormatter {
         timesOfDay.night += item;
       } else { timesOfDay.morning += item; }
     })
-    const { morning, noon, night } = timesOfDay;
-    if(morning > noon && morning > night) { return "Morning"; }
-    if(noon > morning && noon > night) { return "Afternoon"; }
-    return "Night";
+    return timesOfDay;
   }
   static HourConversion(dataset: Array<AprsEntryType>) {
     const entries: Array<number> = Array(24).fill(0);
