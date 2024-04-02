@@ -28,7 +28,7 @@
   let zoom = ref(9)
   const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
   const markers = jsonContentModel.value
-  const map = ref(null);
+  const map = ref<typeof LMap | null>(null);
   let center = ref([markers[0].lat, markers[0].lng])
 
   const centerMap = (marker: AprsEntryType) => {
