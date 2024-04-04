@@ -12,8 +12,8 @@ services:
           target: /app
           ignore:
             - node_modules/
-            - .github
-            - .git
+            - .github/
+            - .git/
     ports:
       - ${PORT:-8080}:8080
     healthcheck:
