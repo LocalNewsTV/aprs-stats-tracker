@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  frontend:
+    container_name: ast-front
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules/
+    ports:
+      - ${PORT:-8080}:8080
+    healthcheck:
+      test: curl--fail http://localhost:8080 || exit 1
+      interval: 20s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
