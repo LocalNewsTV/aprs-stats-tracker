@@ -65,25 +65,40 @@
 </template>
 <!-- // -->
 <style scoped>
+  .big {
+    font-size: 28pt;
+    text-align: center;
+  }
+  .title { 
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+  .full-container {background-color: inherit;}
+  .accent-a { color: black; }
+  .accent-b { color: black; }
+  .accent-c { color: black; }
+  .italic { font-style: italic; }
+  .flavour-text { font-size: 13pt; }
+
   .small-flex {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
-  /* .rocket {
-    filter: drop-shadow(1px 1px 1px #ca2b2e);
-  } */
   img {
     height: 48pt;
     width: 48pt;
     margin-right: 1em;
   }
-  .title { color: white; }
-  .big { font-size: 52pt;}
+  .rocket {
+    display: none;
+  }
+
   p {
     text-align: left; 
-    font-size: 24pt;
+    font-size: 16pt;
   }
   .content-container {
     display: flex;
@@ -91,32 +106,49 @@
     max-width: var(--medium-screen);
     z-index: 3;
   }
-  .italic {
-    font-style: italic;
-  }
-  .bump-out { padding-left: 3em;}
-  .flavour-text { 
-    font-size: 16pt;  
-    padding-left: 3em;
-  }
+
   .accent {
-    font-size: 28pt;
+    font-size: 18pt;
     font-weight: bold;
   }
   .background {
     position: absolute; 
-    height: 350pt;
-    width: 350pt;
+    height: 200pt;
+    width: 200pt;
     right: 4em;
     bottom: 4em;
   }
-  .full-container {background-color: inherit;}
-  .accent-a { color: black; }
-  .accent-b { color: black; }
-  .accent-c { color:  black; }
+
   #captures-in-period {
     background-color: #D85CE6;
     z-index: 1;
     position: relative;
+    padding: 2em 0.5em;
+    box-sizing: border-box;
+    justify-content: flex-start;
+  }
+  @media screen and (min-width: 720pt) {
+    .accent {
+      font-size: 28pt;
+    }
+    .title img {
+      margin-left: 10pt;
+    }
+    #captures-in-period { justify-content: center; }
+    .rocket { display: block; }
+    .big { font-size: 52pt;}
+    .background {
+      height: 350pt;
+      width: 350pt;
+    }
+    .bump-out { padding-left: 3em;}
+    .flavour-text { 
+      font-size: 16pt;  
+      padding-left: 3em;
+    }
+    .small-flex {
+      justify-content: flex-start;
+    }
+    p { font-size: 24pt; }
   }
 </style>

@@ -42,25 +42,44 @@ import AprsEntryType from '../types/AprsEntryType';
     <button @click="handleClick">
       Upload
     </button>
-    {{ fileInformation?.name || "No file selected..." }}
+    <span>
+      {{ fileInformation?.name || "No file selected..." }}
+    </span>
   </label>
 </template>
 <!-- // -->
 <style scoped>
+
   #fileUploader { display: none; }
   button {
     background: orange;
-    height: 200pt;
-    width: 200pt;
-    font-size: 38pt;
+    height: 100pt;
+    width: 100pt;
+    font-size: 18pt;
     border-radius: 50%;
     color: var(--eigengrau);
     border: 1pt solid darkorange;
     padding: 1em;
   }
-  label { color: var(--eigengrau); }
+  span {
+    display: none;
+  }
+  label { 
+    color: var(--eigengrau);
+    display: flex;
+  }
   button:hover {
     cursor: pointer;
     background: var(--button-hover);
   }
-</style>../types/AprsEntryType
+  @media screen and (min-width: 720pt) {
+    span {
+      display: block;
+    }
+    button {
+      height: 200pt;
+      width: 200pt;
+      font-size: 38pt;
+    }
+  }
+</style>

@@ -25,44 +25,59 @@ const jsonContentModel = defineModel<Array<AprsEntryType>>({ required: true })
 </template>
 <!-- //  -->
 <style scoped>
-  h1 { font-size: 46pt; }
+  h1 { font-size: 28pt; }
   a { color: var(--eigengrau); }
+  .background {
+      position: absolute;
+      height: 175pt;
+      width: 175pt;
+      left: 10%;
+      bottom: 5%;
+      z-index: 1;
+    }
+    .small {
+      font-size: 12pt;
+    }
   .left, .right {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    justify-content: center;
     z-index: 2;
     min-height: 45svh;
   }
   p {
-    font-size: 16pt;
-    padding-left: 8pt;
-  }
-  .small {
-    font-size: 12pt;
-  }
-  .left{
-    justify-content: flex-start;
-  }
-  .right {
-    justify-content: flex-end;
-  }
-
-  #hero-cont {
-    background-color: #ffbf00;
-    flex-direction: row;
-    position: relative;
-  }
-  .background {
-    position: absolute;
-    height: 425pt;
-    width: 425pt;
-    left: 10%;
-    bottom: 10%;
-    z-index: 1;
+      font-size: 16pt;
+      padding-left: 8pt;
   }
   img {
-    height: 45pt;
-    width: 45pt;
+    height: 35pt;
+    width: 35pt;
   }
+  #hero-cont {
+    background-color: #ffbf00;
+    flex-direction: column;
+    position: relative;
+    padding: 0.5em;
+    box-sizing: border-box;
+  }
+  .left{ justify-content: flex-end; }
+  .right { justify-content: flex-start; }
+  @media screen and (min-width: 720pt) {
+    h1 { font-size: 46pt; }
+    #hero-cont { flex-direction: row; }
+    img {
+      height: 45pt;
+      width: 45pt;
+    }
+    .left, .right { align-items: stretch; }
+    .left{ justify-content: flex-start; }
+    .right { justify-content: flex-end; }
+    .background {
+      height: 425pt;
+      width: 425pt;
+      left: 10%;
+      bottom: 10%;
+    }
+  }
+
 </style>

@@ -37,7 +37,7 @@ body, :root {
   margin: 0;
   background-color: var(--dark-gray);
   min-height: 100vh;
-  overflow:visible;
+  overflow: visible;
   justify-content: center;
   align-items: center;
 }
