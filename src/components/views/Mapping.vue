@@ -22,23 +22,29 @@ const jsonContentModel = defineModel<Array<AprsEntryType>>({required: true})
   #map-section {
     position:relative;
     background-color: #AFB1FF;
+    box-sizing: border-box;
   }
-  .bg-a, .bg-b, .bg-c {
-    position: absolute;
-    height: 200pt;
-    width: 200pt;
-    z-index: 1;
+  @media screen and (max-width: 720pt) {
+    .bg-a, .bg-b, .bg-c { display: none; }
   }
-  .bg-a {
-    left: 0;
-    bottom: 2%;
-  }
-  .bg-b {
-    right: 0;
-    bottom: 23%;
-  }
-  .bg-c {
-    left: 0;
-    top: 15%;
+  @media screen and (min-width: 720pt) {
+    .bg-a, .bg-b, .bg-c {
+      position: absolute;
+      height: 200pt;
+      width: 200pt;
+      z-index: 1;
+    }
+    .bg-a {
+      left: 0;
+      bottom: 2%;
+    }
+    .bg-b {
+      right: 0;
+      bottom: 23%;
+    }
+    .bg-c {
+      left: 0;
+      top: 15%;
+    }
   }
 </style>

@@ -33,7 +33,7 @@
 
   const centerMap = (marker: AprsEntryType) => {
     if (map.value) {
-      map.value.leafletObject.setView([marker.lat, marker.lng], 12)
+      map.value.leafletObject.setView([marker.lat, marker.lng], 14)
     }
   }
   
@@ -42,7 +42,7 @@
 <style scoped>
   .map-container {
     height: 500pt;
-    width: var(--medium-screen);
+    width: 100%;
   }
   .popup {
     font-size: 10pt;
@@ -50,5 +50,11 @@
   .popup p {
     margin: 0;
     padding: 0;
+  }
+  @media screen and (min-width: 720pt) {
+  .map-container {
+    height: 500pt;
+    width: var(--medium-screen);
+  }
   }
 </style>

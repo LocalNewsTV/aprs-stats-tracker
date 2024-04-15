@@ -61,6 +61,9 @@
 </template>
 <!-- // -->
 <style scoped>
+@media screen and (max-width: 720pt) {
+  #captures-cont { display: none; }
+}
   #captures-cont { 
     position: relative;
     background-color: #16D0A6;
